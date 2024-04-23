@@ -1,1 +1,1 @@
-vacanies
+vacancies
