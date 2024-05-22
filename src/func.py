@@ -7,17 +7,16 @@ from src.j_file import JSONWorker
 class Functions:
 
     @staticmethod
-
     def request():
         """
-        выводит поисковый запрос для запроса вакансий из hh.ru
+        Выводит поисковый запрос для запроса вакансий из hh.ru
         """
         return input('Введите поисковый запрос для поска вакансий: ')
 
     @staticmethod
     def top_vacancies(vacancies):
         """
-        выдает топ N вакансий по зарплате
+        Выдает топ N вакансий по зарплате
         """
         num = int(input('Какое количчество вакансий вам выдать? '))
         sorted_vacancies = sorted_by_salary(vacancies)
@@ -27,7 +26,7 @@ class Functions:
     @staticmethod
     def similar_vacancies(vacancies):
         """
-        получить вакансии с ключевым словом в описании
+        Получить вакансии с ключевым словом в описании
         """
         words = input("введите ключевые слова через пробел: ").split()
         reserve_list_vacancies = vacancies
@@ -55,7 +54,9 @@ class Functions:
                   '6 - сохранить информацию о вакансиях в файл\n'
                   '7 - считатать данные из файла\n'
                   '8 - удалить все данные в файле\n'
-                  '9 - удалить вакансии из файла не соответствующие выбранной зарплате\n'
+                  '9 - удалить вакансии из файлаn/'
+                  ' не соответствующие '
+                  'выбранной зарплате\n'
                   '"stop" или "стоп" закончить работу\n')
             answer = input()
             if answer == "стоп" or answer == "stop":
@@ -68,7 +69,8 @@ class Functions:
                             print(i)
 
                     elif answer == 2:  # фильтрует вакансии по ключевым словам
-                        vacancies_list = Functions.similar_vacancies(vacancies_list)
+                        vacancies_list = Functions.similar_vacancies(
+                            vacancies_list)
 
                     elif answer == 3:  # фильтрует вакансии по з/п
                         vacancies_list = filter_by_salary(vacancies_list)
@@ -80,28 +82,46 @@ class Functions:
                     elif answer == 5:  # отсортирует топ N вакансий
                         Functions.top_vacancies(vacancies_list)
 
-                    elif answer == 6:  # сохраняет информацию о вакансиях в файл
-                        file_name = input('Введите название файла для сохранения данных: (Пример: file )')
-                        file_path = os.path.join(ROOT_DIR, 'data', file_name + str('.json'))
+                    elif answer == 6:  # сохраняет информацию
+                        # о вакансиях в
+                        # файл
+                        file_name = input(
+                            'Введите название файлаn/'
+                            ' для сохранения данных: '
+                            '(Пример: file )')
+                        file_path = os.path.join(ROOT_DIR, 'data',
+                                                 file_name + str('.json'))
                         json_saver = JSONWorker(file_path)
                         json_saver.write_vacancies(vacancies_list)
 
                     elif answer == 7:  # считатываает данные из файла
-                        file_name = input('Введите название файла для считывания данные из файла: (Пример: file )')
-                        file_path = os.path.join(ROOT_DIR, 'data', file_name + str('.json'))
+                        file_name = input(
+                            'Введите название файла длn/'
+                            'я считывания данные '
+                            'из файла: (Пример: file )')
+                        file_path = os.path.join(ROOT_DIR, 'data',
+                                                 file_name + str('.json'))
                         json_saver = JSONWorker(file_path)
                         vacancies_list = json_saver.read_vacancies()
 
-                    elif answer == 8:  # удаляет информацию о вакансиях из файла
-                        file_name = input('Введите название файла для удаления данных: (Пример: file )')
-                        file_path = os.path.join(ROOT_DIR, 'data', file_name + str('.json'))
+                    elif answer == 8:  # удаляет n/
+                        # информацию о вакансиях из
+                        # файла
+                        file_name = input(
+                            'Введите название файла для удаления данных: ('
+                            'Пример: file )')
+                        file_path = os.path.join(ROOT_DIR, 'data',
+                                                 file_name + str('.json'))
                         json_saver = JSONWorker(file_path)
                         json_saver.delete_vacancies()
 
                     elif answer == 9:  # считатываает данные из файла
                         file_name = input(
-                            'Введите название файла для удаления вакансий не соответствующих выбранной зарплате: (Пример: file )')
-                        file_path = os.path.join(ROOT_DIR, 'data', file_name + str('.json'))
+                            'Введите название файла для удаления вакансийn/ '
+                            'не соответствующих выбранной зарплате: ('
+                            'Пример: file )')
+                        file_path = os.path.join(ROOT_DIR, 'data',
+                                                 file_name + str('.json'))
                         json_saver = JSONWorker(file_path)
                         vacancies_list = json_saver.delete_salary_vacancies()
 
